@@ -1,12 +1,16 @@
+import fetch from 'node-fetch';
+
 import { Injectable } from '@nestjs/common';
-import { GetCommitsRequest } from './dto/get-commits-request.dto';
+import { GetCommitsQuery } from './dto/get-commits-query.dto';
 
 @Injectable()
 export class CommitsService {
-  async getAllCommits(getCommitsRequest: GetCommitsRequest): Promise<any> {
+  async getAllCommits(getCommitsQuery: GetCommitsQuery): Promise<any> {
     try {
-      const { username, repo } = getCommitsRequest;
-      return fetch(`https://api.github.com/repos/${username}/${repo}/commits`);
+      const { username, repo } = getCommitsQuery;
+      return fetch(
+        `https://api.github.com/repos/${username}/${repo}/commits`,
+      ).then((res) => res.json());
     } catch (error) {
       console.log('ERROR getAllCommits ERROR', error);
     }

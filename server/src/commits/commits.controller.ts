@@ -1,15 +1,13 @@
-import { Body, Controller, Get } from '@nestjs/common';
+import { Query, Controller, Get } from '@nestjs/common';
 import { CommitsService } from './commits.service';
-import { GetCommitsRequest } from './dto/get-commits-request.dto';
+import { GetCommitsQuery } from './dto/get-commits-query.dto';
 
 @Controller('commits')
 export class CommitsController {
   constructor(private readonly commitsService: CommitsService) {}
 
   @Get()
-  async getAllCommits(
-    @Body() getCommitsRequest: GetCommitsRequest,
-  ): Promise<any> {
-    return this.commitsService.getAllCommits(getCommitsRequest);
+  async getAllCommits(@Query() getCommitsQuery: GetCommitsQuery): Promise<any> {
+    return this.commitsService.getAllCommits(getCommitsQuery);
   }
 }
