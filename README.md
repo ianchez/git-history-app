@@ -49,7 +49,7 @@ Once you clone the repository, you would see this folder structure
     yarn start:dev
     ```
 
-3. Then, run the React app on the client folder
+3. Then, on a new tab, run the React app on the client folder
     ```bash
     cd ../client
     yarn start
