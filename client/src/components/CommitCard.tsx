@@ -11,7 +11,7 @@ const CommitCardDetail = ({ commit }: CommitCardProps) => {
       <Card variant="outlined" sx={{ marginBottom: 2, backgroundColor: 'rgb(31 41 55)' }}>
         <CardContent>
           <Typography sx={{ fontSize: 12 }} color="text.secondary" gutterBottom>
-            {commit.commit.author.date}
+            {(new Date(commit.commit.author.date)).toLocaleString()}
           </Typography>
           <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
             {`Author: ${commit.commit.author.name}`}
