@@ -1,4 +1,4 @@
-import { Sequelize } from 'sequelize-typescript';
+import { Sequelize, SequelizeOptions } from 'sequelize-typescript';
 import { ConfigService } from '@nestjs/config';
 
 /**
@@ -7,17 +7,33 @@ import { ConfigService } from '@nestjs/config';
  * without being subject to human error.
  */
 
+const getConfigVars = (configService: ConfigService): SequelizeOptions => {
+  if (process.env.PRODUCTION) {
+    return {
+      host: process.env.DB_HOST,
+      port: parseInt(process.env.DB_PORT),
+      username: process.env.DB_USERNAME,
+      password: process.env.DB_PASSWORD,
+      database: process.env.DB_NAME,
+    };
+  } else {
+    return {
+      host: configService.get<string>('DB_HOST'),
+      port: configService.get<number>('DB_PORT'),
+      username: configService.get<string>('DB_USERNAME'),
+      password: configService.get<string>('DB_PASSWORD'),
+      database: configService.get<string>('DB_NAME'),
+    };
+  }
+};
+
 export const databaseProviders = [
   {
     provide: '',
     useFactory: async (configService: ConfigService) => {
       const sequelize = new Sequelize({
         dialect: 'mysql',
-        host: configService.get<string>('DB_HOST'),
-        port: configService.get<number>('DB_PORT'),
-        username: configService.get<string>('DB_USERNAME'),
-        password: configService.get<string>('DB_PASSWORD'),
-        database: configService.get<string>('DB_NAME'),
+        ...getConfigVars(configService),
       });
 
       /**
