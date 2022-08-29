@@ -25,7 +25,7 @@ const GitHistoryPage: React.FC = () => {
 
   return (
     <div className="flex justify-center items-center flex-col">
-      <Box component="form" sx={{ width: '80%', height: 300 }} >
+      <Box component="form" sx={{ width: '80%', maxHeight: 400, marginTop: 1 }} >
         <Card variant="outlined" className="flex justify-center items-center flex-col p-6">
           <Typography variant="h5" sx={{ marginBottom: 2 }}>Welcome to the GitHistory Page!</Typography>
           <TextField
@@ -34,6 +34,8 @@ const GitHistoryPage: React.FC = () => {
             name="username"
             value={inputValues.username}
             onChange={handleOnChangeInputs}
+            error={!inputValues.username}
+            helperText={'You must enter a Github username'}
           />
           <TextField
             sx={{ marginBottom: 2, width: '60%' }}
@@ -41,14 +43,22 @@ const GitHistoryPage: React.FC = () => {
             name="repo"
             value={inputValues.repo}
             onChange={handleOnChangeInputs}
+            error={!inputValues.repo}
+            helperText={'You must enter a Github repository name'}
           />
-          <Button variant="contained" type="submit" size="large" onClick={handleGetCommits}>
+          <Button
+            variant="contained"
+            type="submit"
+            size="large"
+            onClick={handleGetCommits}
+            disabled={!inputValues.username || !inputValues.repo}
+          >
             Get commits!
           </Button>
         </Card>
       </Box>
 
-      <Box sx={{ width: '80%', maxHeight: 600, overflow: 'auto' }} >
+      <Box sx={{ width: '80%', maxHeight: 600, overflow: 'auto', marginTop: 1 }} >
         <Card variant="outlined" className="flex justify-center items-center flex-col py-4">
           {isFetchingAllCommits
             ? <Box className="flex justify-center items-center"><CircularProgress /></Box>
