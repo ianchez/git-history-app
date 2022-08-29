@@ -22,7 +22,7 @@ const CommitCardDetail = ({ commit }: CommitCardProps) => {
           <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
             {`SHA: ${commit.sha}`}
           </Typography>
-          <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+          <Typography sx={{ fontSize: 14 }} color="text.secondary">
             {'URL: '}<Link underline="hover">{commit.htmlURL}</Link>
           </Typography>
         </CardContent>
