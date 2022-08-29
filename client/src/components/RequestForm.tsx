@@ -20,15 +20,7 @@ const RequestForm = ({ handleSubmit }: RequestFormProps) => {
     <Box component="form" sx={{ width: '80%', maxHeight: 400, marginTop: 1 }} >
       <Card variant="outlined" className="flex justify-center items-center flex-col p-6">
         <Typography variant="h5" sx={{ marginBottom: 4 }}>Get the commits history from the selected Github repo!</Typography>
-        <TextField
-          sx={{ marginBottom: 2, width: '60%' }}
-          label="Github Username (repo owner)"
-          name="username"
-          value={inputValues.username}
-          onChange={handleOnChangeInputs}
-          error={!inputValues.username}
-          helperText={!inputValues.username && 'You must enter a Github username'}
-        />
+
         <TextField
           sx={{ marginBottom: 2, width: '60%' }}
           label="Github Repo"
@@ -38,6 +30,16 @@ const RequestForm = ({ handleSubmit }: RequestFormProps) => {
           error={!inputValues.repo}
           helperText={!inputValues.repo && 'You must enter a Github repository name'}
         />
+        <TextField
+          sx={{ marginBottom: 2, width: '60%' }}
+          label="Github Username (owner)"
+          name="username"
+          value={inputValues.username}
+          onChange={handleOnChangeInputs}
+          error={!inputValues.username}
+          helperText={!inputValues.username && 'You must enter a Github username'}
+        />
+
         <Button
           variant="contained"
           type="submit"
