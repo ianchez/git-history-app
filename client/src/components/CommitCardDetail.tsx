@@ -1,4 +1,4 @@
-import { Box, Card, CardContent, Link, Typography } from "@mui/material";
+import { Box, Card, CardContent, Divider, Link, Typography } from "@mui/material";
 import { Commit } from "../models/Commit";
 
 interface CommitCardProps {
@@ -13,16 +13,19 @@ const CommitCardDetail = ({ commit }: CommitCardProps) => {
           <Typography sx={{ fontSize: 12 }} color="text.secondary" gutterBottom>
             {(new Date(commit.commit.author.date)).toLocaleString()}
           </Typography>
-          <Typography sx={{ fontSize: 14 }} gutterBottom>
-            {`Author: ${commit.commit.author.name}`}
+          <Typography sx={{ fontSize: 16 }} gutterBottom>
+            {`${commit.commit.author.name} (${commit.commit.author.email})`}
           </Typography>
-          <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-            {`Email: ${commit.commit.author.email}`}
+          <Typography sx={{ fontSize: 14, marginBottom: 2 }}>
+            {`${commit.commit.message}`}
           </Typography>
-          <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+
+          <Divider />
+
+          <Typography sx={{ fontSize: 12, marginTop: 2 }} color="text.secondary" gutterBottom>
             {`SHA: ${commit.sha}`}
           </Typography>
-          <Typography sx={{ fontSize: 14 }} color="text.secondary" >
+          <Typography sx={{ fontSize: 12 }} color="text.secondary" >
             {'URL: '}<Link underline="hover" href={commit.htmlURL}>{commit.htmlURL}</Link>
           </Typography>
         </CardContent>
