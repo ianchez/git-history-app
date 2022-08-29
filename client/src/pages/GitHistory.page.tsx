@@ -1,6 +1,7 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
 import { Box, Button, Card, CardContent, CircularProgress, Link, TextField, Typography } from "@mui/material";
 import { useGetAllCommitsQuery } from "../apis/commits.api";
+import CommitCardDetail from "../components/CommitCard";
 
 const GitHistoryPage: React.FC = () => {
   const [username, setUsername] = useState('ianchez');
@@ -32,32 +33,11 @@ const GitHistoryPage: React.FC = () => {
         </Button>
       </Card>
 
-      <Card variant="outlined" sx={{ width: '80%', overflow: 'auto' }} className="flex justify-center items-center flex-col p-2 h-90">
+      <Card variant="outlined" sx={{ width: '80%', overflow: 'auto' }} className="flex justify-center items-center flex-col p-2">
         {isFetchingAllCommits
           ? <Box className="flex justify-center items-center"><CircularProgress /></Box>
-          : commits?.map((commit) =>
-            <Box key={commit.sha} sx={{ width: '96%' }}>
-              <Card variant="outlined" sx={{ marginBottom: 2 }}>
-                <CardContent>
-                  <Typography sx={{ fontSize: 12 }} color="text.secondary" gutterBottom>
-                    {commit.commit.author.date}
-                  </Typography>
-                  <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                    {`Author: ${commit.commit.author.name}`}
-                  </Typography>
-                  <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                    {`Email: ${commit.commit.author.email}`}
-                  </Typography>
-                  <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                    {`SHA: ${commit.sha}`}
-                  </Typography>
-                  <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                    {'URL: '}<Link underline="hover">{commit.htmlURL}</Link>
-                  </Typography>
-                </CardContent>
-              </Card>
-            </Box>
-        )}
+          : commits?.map((commit) => <CommitCardDetail key={commit.sha} commit={commit}/>)
+        }
       </Card>
     </div>
   );
