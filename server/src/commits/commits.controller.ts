@@ -7,7 +7,7 @@ export class CommitsController {
   constructor(private readonly commitsService: CommitsService) {}
 
   @Get()
-  async getAllCommits(@Query() getCommitsQuery: GetCommitsQuery): Promise<any> {
-    return this.commitsService.getAllCommits(getCommitsQuery);
+  async getAllCommits(@Query() queryParams: GetCommitsQuery): Promise<any> {
+    return this.commitsService.getAllCommits(queryParams);
   }
 }

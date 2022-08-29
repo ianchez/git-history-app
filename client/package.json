@@ -2,6 +2,7 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:3002",
   "dependencies": {
     "@craco/craco": "^6.4.5",
     "@emotion/react": "^11.10.0",
@@ -52,4 +53,5 @@
     "postcss": "^8.4.16",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat"
   }
+
 }

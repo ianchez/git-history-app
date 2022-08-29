@@ -1,8 +1,10 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
+import { commitsApi } from '../apis/commits.api';
 import counterReducer from '../features/counter/counterSlice';
 
 export const store = configureStore({
   reducer: {
+    [commitsApi.reducerPath]: commitsApi.reducer,
     counter: counterReducer,
   },
 });
