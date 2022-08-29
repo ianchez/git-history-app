@@ -33,12 +33,14 @@ const GitHistoryPage: React.FC = () => {
         </Button>
       </Card>
 
-      <Card variant="outlined" sx={{ width: '80%', overflow: 'auto' }} className="flex justify-center items-center flex-col p-2">
-        {isFetchingAllCommits
-          ? <Box className="flex justify-center items-center"><CircularProgress /></Box>
-          : commits?.map((commit) => <CommitCardDetail key={commit.sha} commit={commit}/>)
-        }
-      </Card>
+      <Box sx={{ width: '80%', maxHeight: 600, overflow: 'auto', marginTop: 2 }} >
+        <Card variant="outlined" className="flex justify-center items-center flex-col p-2">
+          {isFetchingAllCommits
+            ? <Box className="flex justify-center items-center"><CircularProgress /></Box>
+            : commits?.map((commit) => <CommitCardDetail key={commit.sha} commit={commit}/>)
+          }
+        </Card>
+      </Box>
     </div>
   );
 };
