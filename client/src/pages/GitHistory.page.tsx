@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useGetAllCommitsQuery } from "../apis/commits.api";
-import { GetCommitsQuery } from "../apis/dto/get-commits-query.dto";
 
-import RequestForm from "../components/RequestForm";
+import RequestForm, { InputValues } from "../components/RequestForm";
 import CommitsList from "../components/CommitsList";
 
 const GitHistoryPage: React.FC = () => {
@@ -14,7 +13,7 @@ const GitHistoryPage: React.FC = () => {
     refetch();
   }, [username, repo])
 
-  const handleGetCommits = (event: React.MouseEvent, inputValues: GetCommitsQuery) => {
+  const handleGetCommits = (event: React.MouseEvent, inputValues: InputValues) => {
     event.preventDefault();
     setUsername(inputValues.username);
     setRepo(inputValues.repo);

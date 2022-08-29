@@ -2,8 +2,9 @@ import { useState, ChangeEvent, MouseEvent } from "react";
 import { Box, Button, Card, TextField, Typography } from "@mui/material";
 import { GetCommitsQuery } from "../apis/dto/get-commits-query.dto";
 
+export interface InputValues extends GetCommitsQuery {}
 interface RequestFormProps {
-  handleSubmit: (event: MouseEvent, inputValues: GetCommitsQuery) => void;
+  handleSubmit: (event: MouseEvent, inputValues: InputValues) => void;
 }
 
 const RequestForm = ({ handleSubmit }: RequestFormProps) => {
