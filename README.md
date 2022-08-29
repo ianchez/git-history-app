@@ -41,10 +41,10 @@ Once you clone the repository, you would see this folder structure
 
 1. Create a .env file on the root of the server folder, in there you need to configure your MySQL database connection, if you dont have MySQL installed locally, you can use cloud based databases, por example heres a free one (https://www.freemysqlhosting.net/)
 
-    The needed environments variables to be set, can be seen on the `.env.example` file on the same folder
+    - The needed environments variables to be set, can be seen on the `.env.example` file on the same folder
+    - Note: setting the `GIT_AUTH_TOKEN` .env variable would allow you to get higher rates calling the Github API, you can use a PAT token (https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) 
 
-2. After you configure your .env variables, on the server forlder run the backend on development mode
-
+2. After you configure your .env variables, on the server folder run the backend on development mode
     ```bash
     yarn start:dev
     ```
