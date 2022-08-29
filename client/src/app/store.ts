@@ -7,6 +7,8 @@ export const store = configureStore({
     [commitsApi.reducerPath]: commitsApi.reducer,
     counter: counterReducer,
   },
+  middleware: (getDefaultMiddleware) => 
+    getDefaultMiddleware().concat(commitsApi.middleware),
 });
 
 export type AppDispatch = typeof store.dispatch;
