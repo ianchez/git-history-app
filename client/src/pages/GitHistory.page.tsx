@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Box, Card, CircularProgress } from "@mui/material";
 import { useGetAllCommitsQuery } from "../apis/commits.api";
-import CommitCardDetail from "../components/CommitCardDetail";
-import RequestForm from "../components/RequestForm";
 import { GetCommitsQuery } from "../apis/dto/get-commits-query.dto";
+
+import RequestForm from "../components/RequestForm";
+import CommitsList from "../components/CommitsList";
 
 const GitHistoryPage: React.FC = () => {
   const [username, setUsername] = useState('ianchez');
@@ -22,18 +22,14 @@ const GitHistoryPage: React.FC = () => {
 
   return (
     <div className="flex justify-center items-center flex-col">
-      <RequestForm handleSubmit={handleGetCommits}/>
+      <RequestForm
+        handleSubmit={handleGetCommits}
+      />
 
-      <Box sx={{ width: '80%', maxHeight: 600, overflow: 'auto', marginTop: 1 }} >
-        <Card variant="outlined" className="flex justify-center items-center flex-col py-4">
-          {isFetchingAllCommits
-            ? <Box className="flex justify-center items-center"><CircularProgress /></Box>
-            : commits?.map((commit) =>
-                <CommitCardDetail key={commit.sha} commit={commit}/>
-              )
-          }
-        </Card>
-      </Box>
+      <CommitsList
+        isLoading={isFetchingAllCommits}
+        commits={commits}
+      />
     </div>
   );
 };
