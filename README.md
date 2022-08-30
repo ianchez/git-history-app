@@ -44,9 +44,16 @@ Once you clone the repository, you would see this folder structure
     - The needed environments variables to be set, can be seen on the `.env.example` file on the same folder
     - Note: setting the `GIT_AUTH_TOKEN` .env variable would allow you to get higher rates calling the Github API, you can use a PAT token (https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) 
 
-2. After you configure your .env variables, on the server folder run the backend on development mode
+2. After you configure your .env variables, on the server folder run the backend
     ```bash
-    yarn start:dev
+    # development
+    $ yarn start
+
+    # watch mode
+    $ yarn start:dev
+
+    # production mode
+    $ yarn start:prod
     ```
 
 3. Then, on a new tab, run the React app on the client folder
@@ -56,3 +63,16 @@ Once you clone the repository, you would see this folder structure
     ```
 
 
+## Test
+On server folder you can run
+
+```bash
+# unit tests
+$ yarn test
+
+# e2e tests
+$ yarn test:e2e
+
+# test coverage
+$ yarn test:cov
+```
